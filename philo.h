@@ -20,6 +20,10 @@
 # include <sys/time.h>
 # include <pthread.h>
 
+
+typedef struct s_philo	t_philo;
+typedef struct s_table	t_table;
+
 typedef struct s_table
 {
 	int				end_of_simulation;
@@ -48,8 +52,22 @@ typedef struct s_philo
 	
 }			t_philo;
 
-
+long	get_time(void);
 int		ft_atoi(const char *str);
+int 	mutexes_init(t_table *table);
+int		death(t_table	*table, int i);
+int		start_simulation(t_table *table);
+int		stop_simulation(t_table *table);
 int     check_error(int arc, char **arv);
+int		must_eat_condition(t_table *table);
+
+
+void	get_some_sleep(t_table	*table, int time_to);
+void	stop_flag(t_table *table, int state);
+void	ft_fork(t_philo *philo);
+void	**philo_init(t_table *table);
+void	*table_init(t_table *table, int arc, char **arv);
+void	write_log(t_philo *philo, int x, char *status);
+void 	print_log(long time, int thread_index, char* status);
 
 #endif

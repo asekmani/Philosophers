@@ -36,9 +36,9 @@ int mutexes_init(t_table *table)
     if (!table->fork_locks)
 		return (0);
     if (pthread_mutex_init(&table->write_lock, 0) != 0)
-		return (NULL);
+		return (0);
 	if (pthread_mutex_init(&table->simulation_end, 0) != 0)
-		return (NULL);
+		return (0);
 	return (1);
 }
 
@@ -74,17 +74,19 @@ void	**philo_init(t_table *table)
             return(NULL);
         table->philo[i]->index = i;
         table->philo[i]->nb_of_meal = 0;
+        table->philo[i]->last_meal = get_time();
         ft_fork(table->philo[i]);
         i++;
     }
+    return (NULL);
 }
 
 void	*table_init(t_table *table, int arc, char **arv)
 {
-    table->end_of_simulation = 0;
     table = malloc(sizeof(t_table) * 1);
+    table->end_of_simulation = 0;
     if (!table)
-        rturn(NULL);
+        return(NULL);
     table->philo_nbr = ft_atoi(arv[1]);
     table->time_to_die = ft_atoi(arv[2]);
     table->time_to_eat = ft_atoi(arv[3]);
@@ -93,7 +95,8 @@ void	*table_init(t_table *table, int arc, char **arv)
     table->nb_of_must_eat = -1;
     if (arc == 6)
         table->nb_of_must_eat = ft_atoi(arv[5]);
-    philo_init(&table);
-    if (mutexes_init(&table) == 0)
+    philo_init(table);
+    if (mutexes_init(table) == 0)
         return (NULL);
+    return table;
 }

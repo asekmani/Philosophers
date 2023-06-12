@@ -49,7 +49,6 @@ int	ft_atoi(const char *str)
 int     check_error(int arc, char **arv)
 {
     int i;
-    int nb;
 
     i = 1;
     while(i < arc)
@@ -59,7 +58,7 @@ int     check_error(int arc, char **arv)
             printf("Error: Invalid inputs (not digits/unsigned int) !!");
             return(1);
         }
-        nb = ft_atoi(arv[i]);
+        ft_atoi(arv[i]);
         i++;
     }
     return(0);

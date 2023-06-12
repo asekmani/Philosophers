@@ -27,8 +27,8 @@ OBJS= ${SRCS:.c=.o}
 
 OBJS2 = ${SRCSBO:.c=.o}
 
-CC=	cc
-FLAGS=	-Wall -Wextra -Werror -g3
+CC=	gcc
+FLAGS=	-Werror -Wall -Wextra -g
 RM=	rm -f
 
 all: $(NAME)
