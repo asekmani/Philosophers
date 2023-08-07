@@ -14,10 +14,13 @@ NAME= philo
 
 SRCS= 	main.c \
 		init.c \
-		error_cases.c \
+		time.c \
+		death.c \
 		simulation.c \
+		philo_routine.c \
+		error_cases.c \
+		clean_all.c 
 		
-
 SRCSBO=	
 		
 

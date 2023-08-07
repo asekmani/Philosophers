@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-static int is_digit(char *s)
+static int	is_digit(char *s)
 {
 	int	i;
 
@@ -28,8 +28,8 @@ static int is_digit(char *s)
 
 int	ft_atoi(const char *str)
 {
-	int i;
-	long long nb;
+	int			i;
+	long long	nb;
 
 	i = 0;
 	nb = 0;
@@ -39,27 +39,32 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	if (nb > INT_MAX)
-    {
-        printf("Error: inputs are not integer !!");
-        exit(EXIT_FAILURE);
-    }
+	{
+		printf("Error: inputs are not integer !!");
+		exit(EXIT_FAILURE);
+	}
 	return (nb);
 }
 
-int     check_error(int arc, char **arv)
+int	check_error(int arc, char **arv)
 {
-    int i;
+	int	i;
 
-    i = 1;
-    while(i < arc)
-    {
-        if(is_digit(arv[i]) == 0)
-        {
-            printf("Error: Invalid inputs (not digits/unsigned int) !!");
-            return(1);
-        }
-        ft_atoi(arv[i]);
-        i++;
-    }
-    return(0);
+	i = 1;
+	while (i < arc)
+	{
+		if (is_digit(arv[i]) == 0)
+		{
+			printf("Error: Invalid inputs (not digits/unsigned int) !!");
+			return (1);
+		}
+		ft_atoi(arv[i]);
+		if (i == 1 && ft_atoi(arv[i]) == 0)
+		{
+			printf("Error: There must be at least 1 pholosopher !!");
+			return (1);
+		}
+		i++;
+	}
+	return (0);
 }
